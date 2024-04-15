@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chiao-Ke's Projects</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Hu Chiao-Ke's Projects">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-bar {
+            width: 800px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: width 0.3s ease;
+            /* Added: Transition for smooth width change */
+        }
+
+        .nav-circle {
+            display: none;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .nav-icon {
+            width: 25px;
+            height: 3px;
+            background-color: rgb(28, 28, 28);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-icon::before,
+        .nav-icon::after {
+            content: "";
+            width: 25px;
+            height: 3px;
+            background-color: rgb(28, 28, 28);
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-icon::before {
+            top: -8px;
+        }
+
+        .nav-icon::after {
+            top: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        @media screen and (max-width: 5000px) {
+            .nav-bar {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                align-items: center;
+                justify-content: center;
+                transition: width 0.3s ease, border-radius 0.3s ease;
+            }
+
+            .nav-circle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                /* top: 5px; */
+                left: 0;
+                width: 100%;
+                background-color: #3f51b500;
+                flex-direction: row;
+                align-items: center;
+                transform: scaleX(0);
+                transform-origin: top;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links a {
+                /* top: -50%; */
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+                transition: opacity 0.3s ease;
+            }
+
+            .nav-bar.active {
+                width: 800px;
+                /* Modified: Set the expanded width */
+                border-radius: 30px;
+                /* Modified: Maintain the rounded rectangle shape */
+            }
+
+            .nav-bar.active .nav-icon {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            .nav-bar.active .nav-icon::before {
+                transform: translateY(8px) rotate(90deg);
+            }
+
+            .nav-bar.active .nav-icon::after {
+                transform: translateY(-8px) rotate(90deg);
+            }
+
+            .nav-bar.active .nav-links {
+                transform: scaleX(1);
+                flex-direction: row;
+                /* Modified: Display links horizontally */
+                justify-content: space-around;
+                /* Modified: Distribute links evenly */
+                /* padding: 0 20px; */
+                /* Modified: Add horizontal padding to the links */
+            }
+
+            .nav-bar.active .nav-links a {
+                /* margin: 0; */
+                /* Modified: Remove margins */
+                width: auto;
+                /* Modified: Allow links to fit naturally */
+                text-align: center;
+            }
+
+            .rounded-rectangle {
+                margin-top: 80px;
+            }
+        }
+
+        .nav-bar a {
+            color: rgb(28, 28, 28);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .rounded-rectangle {
+            width: 800px;
+            min-height: 2000px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 35px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 40px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-details {
+            text-align: left;
+            width: 100%;
+        }
+
+        .project-details h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .project-details p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="nav-circle">
+            <div class="nav-icon"></div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="project.html">Project</a>
+        </div>
+    </div>
+    <div class="rounded-rectangle">
+        <div class="project-details">
+            <h2>My Projects</h2>
+            <p>Project1</p>
+            <p>Project2</p>
+            <p>Project3</p>
+        </div>
+    </div>
+
+    <script>
+        const navBar = document.querySelector('.nav-bar');
+        const navCircle = document.querySelector('.nav-circle');
+
+        navCircle.addEventListener('click', () => {
+            navBar.classList.toggle('active');
+        });
+    </script>
+
+</body>
+
+</html>

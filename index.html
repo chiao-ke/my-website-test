@@ -303,6 +303,32 @@
             position: relative;
             z-index: 2;
         }
+
+        .email-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .copy-button {
+            background-color: #ffffff00;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 10px;
+            /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); */
+        }
+
+        .copy-button img {
+            width: 20px;
+            height: 20px;
+        }
     </style>
 </head>
 
@@ -346,7 +372,13 @@
             <div class="right-block-bottom">
                 <div class="light"></div>
                 <div class="content">
-                    <p z-index: 4>Email: chiaoke@outlook.com</p>
+                    <div class="email-container">
+                        <p z-index: 4>Email: chiaoke@outlook.com</p>
+                        <button class="copy-button" onclick="copyEmail()">
+                            <img src="copy.png" alt="Copy Icon">
+                            <!-- <img src="https://www.flaticon.com/free-icon/paper_3719847.png" alt="Copy Icon"> -->
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -409,6 +441,16 @@
         // Function to handle mouse leave event for right-block-bottom
         function handleRightBlockMouseLeave() {
             light.style.opacity = 0;
+        }
+
+        // Function to copy the email to clipboard
+        function copyEmail() {
+            const email = 'chiaoke@outlook.com';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('Email copied to clipboard!');
+            }).catch((error) => {
+                console.error('Failed to copy email:', error);
+            });
         }
     </script>
 </body>

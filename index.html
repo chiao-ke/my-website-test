@@ -33,6 +33,8 @@
             align-items: center;
             margin-bottom: 20px;
             box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            /* Add this line */
 
         }
 
@@ -51,8 +53,12 @@
             border-radius: 50%;
             cursor: pointer;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            /* Modify this line */
+            left: 50%;
+            /* Modify this line */
+            transform: translate(-50%, -50%);
+            /* Add this line */
             z-index: 3;
         }
 
@@ -118,10 +124,6 @@
             }
 
             .nav-circle {
-                display: block;
-            }
-
-            .nav-icon {
                 display: block;
             }
 

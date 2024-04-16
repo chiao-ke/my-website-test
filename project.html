@@ -220,6 +220,27 @@
             line-height: 1.6;
             margin-bottom: 20px;
         }
+
+        #scroll-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: rgb(28, 28, 28);
+            font-size: 24px;
+            cursor: pointer;
+            outline: none;
+            z-index: 9999;
+        }
+
+        #scroll-to-top:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
     </style>
 </head>
 
@@ -242,6 +263,7 @@
             <p>Project3</p>
         </div>
     </div>
+    <button id="scroll-to-top" onclick="scrollToTop()">&#8593;</button>
 
     <script>
         const navBar = document.querySelector('.nav-bar');
@@ -250,6 +272,22 @@
         navCircle.addEventListener('click', () => {
             navBar.classList.toggle('active');
         });
+
+        window.addEventListener('scroll', () => {
+            const scrollToTopButton = document.getElementById('scroll-to-top');
+            if (window.pageYOffset > 100) {
+                scrollToTopButton.style.display = 'block';
+            } else {
+                scrollToTopButton.style.display = 'none';
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     </script>
 
 </body>
